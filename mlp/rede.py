@@ -21,7 +21,10 @@ class RedeNeural:
 
     def passo_a_frente(self, X: np.ndarray) -> np.ndarray:
         """Realiza a propagação direta através de todas as camadas da rede."""
-        raise NotImplementedError
+        saida = X
+        for camada in self.camadas:
+            saida = camada.passo_a_frente(saida)
+        return saida
 
     def passo_atras(self, gradiente_saida: np.ndarray) -> None:
         """Realiza a retropropagação do gradiente do fim para o início da rede."""
