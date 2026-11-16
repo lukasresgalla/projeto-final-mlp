@@ -48,4 +48,4 @@ class RedeNeural:
 
     def predizer(self, X: np.ndarray) -> np.ndarray:
         """Realiza predições para novas observações."""
-        raise NotImplementedError
+        return self.passo_a_frente(X)
