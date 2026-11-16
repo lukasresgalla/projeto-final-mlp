@@ -13,11 +13,11 @@ class RedeNeural:
 
     def adicionar(self, camada: Camada | Ativacao) -> None:
         """Adiciona uma camada ou função de ativação à rede."""
-        raise NotImplementedError
+        self.camadas.append(camada)
 
     def compilar(self, funcao_custo: FuncaoCusto) -> None:
         """Define a função de custo a ser utilizada no treinamento."""
-        raise NotImplementedError
+        self.funcao_custo = funcao_custo
 
     def passo_a_frente(self, X: np.ndarray) -> np.ndarray:
         """Realiza a propagação direta através de todas as camadas da rede."""
