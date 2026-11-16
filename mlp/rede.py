@@ -28,7 +28,9 @@ class RedeNeural:
 
     def passo_atras(self, gradiente_saida: np.ndarray) -> None:
         """Realiza a retropropagação do gradiente do fim para o início da rede."""
-        raise NotImplementedError
+        gradiente = gradiente_saida
+        for camada in reversed(self.camadas):
+            gradiente = camada.passo_atras(gradiente)
 
     def treinar(
         self,
