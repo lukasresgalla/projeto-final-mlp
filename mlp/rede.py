@@ -38,6 +38,8 @@ class RedeNeural:
         verbal: bool = True,
     ) -> dict[str, list[float]]:
         m = X_treino.shape[0]
+        custo_treino = []
+        custo_validacao = []
 
         for epoca in range(epocas):
             indices = self.gerador_aleatorio.permutation(m)
@@ -55,7 +57,24 @@ class RedeNeural:
                     if hasattr(camada, "atualizar"):
                         camada.atualizar(taxa_aprendizagem)
 
-        raise NotImplementedError
+            custo_epoca = self.funcao_custo.calcular_custo(
+                y_treino, self.predizer(X_treino)
+            )
+            custo_treino.append(custo_epoca)
+
+            if X_validacao is not None and y_validacao is not None:
+                custo_val = self.funcao_custo.calcular_custo(
+                    y_validacao, self.predizer(X_validacao)
+                )
+                custo_validacao.append(custo_val)
+
+            if verbal and (epoca + 1) % 10 == 0:
+                mensagem = f"Época {epoca + 1}/{epocas} - custo_treino: {custo_epoca:.6f}"
+                if custo_validacao:
+                    mensagem += f" - custo_validacao: {custo_validacao[-1]:.6f}"
+                print(mensagem)
+
+        return {"custo_treino": custo_treino, "custo_validacao": custo_validacao}
 
     def predizer(self, X: np.ndarray) -> np.ndarray:
         return self.passo_a_frente(X)
