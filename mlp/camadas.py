@@ -4,8 +4,6 @@ from mlp.inicializadores import Xavier
 
 
 class Densa(Camada):
-    """Camada totalmente conectada (linear)."""
-
     def __init__(
         self,
         dimensao_entrada: int,
