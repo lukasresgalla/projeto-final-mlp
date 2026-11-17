@@ -47,6 +47,14 @@ class RedeNeural:
                 Xb = X_treino[indices_lote]
                 yb = y_treino[indices_lote]
 
+                saida = self.passo_a_frente(Xb)
+                grad = self.funcao_custo.gradiente(yb, saida)
+                self.passo_atras(grad)
+
+                for camada in self.camadas:
+                    if hasattr(camada, "atualizar"):
+                        camada.atualizar(taxa_aprendizagem)
+
         raise NotImplementedError
 
     def predizer(self, X: np.ndarray) -> np.ndarray:
