@@ -37,6 +37,16 @@ class RedeNeural:
         y_validacao: np.ndarray | None = None,
         verbal: bool = True,
     ) -> dict[str, list[float]]:
+        m = X_treino.shape[0]
+
+        for epoca in range(epocas):
+            indices = self.gerador_aleatorio.permutation(m)
+
+            for inicio in range(0, m, tamanho_lote):
+                indices_lote = indices[inicio:inicio + tamanho_lote]
+                Xb = X_treino[indices_lote]
+                yb = y_treino[indices_lote]
+
         raise NotImplementedError
 
     def predizer(self, X: np.ndarray) -> np.ndarray:
