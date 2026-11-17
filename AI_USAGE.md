@@ -8,4 +8,4 @@ Utilizei o Codex como apoio durante o desenvolvimento da minha parte do projeto.
 
 # Uso de IA — Leila
 
-Na minha parte, usei o Claude como apoio, Pedi ajuda principalmente para entender melhor alguns conceitos ao longo da implementação e para revisar/redigir os textos de análise de cada experimento. Todo o código e os resultados foram revisados.
+Utilizei o Claude Code (extensão no VS Code) como apoio durante o desenvolvimento da minha parte do projeto. A ferramenta ajudou na implementação do método treinar e dos testes correspondentes, na montagem do código do notebook e na melhoria dos textos de análise.
